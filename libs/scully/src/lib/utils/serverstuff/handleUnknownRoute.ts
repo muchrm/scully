@@ -14,6 +14,7 @@ import { HandledRoute } from '../../routerPlugins/';
 
 export const handleUnknownRoute: RequestHandler = async (req, res, next) => {
   if (req.accepts('html')) {
+    req.url = decodeURIComponent(req.url);
     /** only handle 404 on html requests specially  */
     await loadConfig;
     const distFolder = join(scullyConfig.homeFolder, scullyConfig.hostFolder || scullyConfig.distFolder);
